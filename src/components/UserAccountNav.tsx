@@ -1,7 +1,7 @@
 'use client'
 
 import { User } from '@/payload-types'
-import { Button } from './ui/button'
+import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,6 +11,7 @@ import {
 } from './ui/dropdown-menu'
 import Link from 'next/link'
 import { useAuth } from '@/hooks/use-auth'
+import { UserIcon, UserCogIcon } from 'lucide-react'
 
 const UserAccountNav = ({ user }: { user: User }) => {
   const { signOut } = useAuth()
@@ -24,7 +25,7 @@ const UserAccountNav = ({ user }: { user: User }) => {
           variant='ghost'
           size='sm'
           className='relative'>
-          My account
+          <UserCogIcon className='w-5 h-5' />
         </Button>
       </DropdownMenuTrigger>
 

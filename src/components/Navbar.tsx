@@ -8,87 +8,91 @@ import { getServerSideUser } from '@/lib/payload-utils'
 import { cookies } from 'next/headers'
 import UserAccountNav from './UserAccountNav'
 import MobileNav from './MobileNav'
+import Image from 'next/image'
+import { ShoppingBag, ShoppingCart } from 'lucide-react'
 
 const Navbar = async () => {
-  const nextCookies = cookies()
-  const { user } = await getServerSideUser(nextCookies)
+    const nextCookies = cookies()
+    const { user } = await getServerSideUser(nextCookies)
 
-  return (
-    <div className='bg-white sticky z-50 top-0 inset-x-0 h-16'>
-      <header className='relative bg-white'>
-        <MaxWidthWrapper>
-          <div className='border-b border-gray-200'>
-            <div className='flex h-16 items-center'>
-              <MobileNav />
-
-              <div className='ml-4 flex lg:ml-0'>
-                <Link href='/'>
-                  <Icons.logo className='h-10 w-10' />
-                </Link>
-              </div>
-
-              <div className='hidden z-50 lg:ml-8 lg:block lg:self-stretch'>
-                <NavItems />
-              </div>
-
-              <div className='ml-auto flex items-center'>
-                <div className='hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6'>
-                  {user ? null : (
-                    <Link
-                      href='/sign-in'
-                      className={buttonVariants({
-                        variant: 'ghost',
-                      })}>
-                      Sign in
+    return (
+        <header className="absolute top-8 w-screen z-overlay mb-20">
+            <nav
+                className="container flex items-center justify-between px-8 py-4 mx-auto bg-base-100 rounded-full shadow-lg"
+                aria-label="Global"
+            >
+                <div className="flex lg:flex-1">
+                    <Link href="/">
+                        <p className="flex items-center gap-2 shrink-0" title="Creative Store homepage">
+                            <Image
+                                alt="Creative Store logo"
+                                src="https://utfs.io/f/693f0e57-5be4-42bd-adad-7591d485d7a2-bdqfc5.png"
+                                width={30}
+                                height={32}
+                            />
+                            Creative Store
+                        </p>
                     </Link>
-                  )}
-
-                  {user ? null : (
-                    <span
-                      className='h-6 w-px bg-gray-200'
-                      aria-hidden='true'
-                    />
-                  )}
-
-                  {user ? (
-                    <UserAccountNav user={user} />
-                  ) : (
-                    <Link
-                      href='/sign-up'
-                      className={buttonVariants({
-                        variant: 'ghost',
-                      })}>
-                      Create account
-                    </Link>
-                  )}
-
-                  {user ? (
-                    <span
-                      className='h-6 w-px bg-gray-200'
-                      aria-hidden='true'
-                    />
-                  ) : null}
-
-                  {user ? null : (
-                    <div className='flex lg:ml-6'>
-                      <span
-                        className='h-6 w-px bg-gray-200'
-                        aria-hidden='true'
-                      />
-                    </div>
-                  )}
-
-                  <div className='ml-4 flow-root lg:ml-6'>
-                    <Cart />
-                  </div>
                 </div>
-              </div>
-            </div>
-          </div>
-        </MaxWidthWrapper>
-      </header>
-    </div>
-  )
+                <div className="hidden lg:flex lg:justify-center lg:gap-12 lg:items-center">
+                    <NavItems />
+                </div>
+                <div className="hidden lg:flex lg:justify-end lg:flex-1">
+                    {user ? null : (
+                        <Link
+                            href='/sign-in'
+                            className={buttonVariants({
+                                variant: 'ghost',
+                            })}>
+                            Sign in
+                        </Link>
+                    )}
+
+                    {user ? null : (
+                        <span
+                            className='h-6 w-px bg-gray-200'
+                            aria-hidden='true'
+                        />
+                    )}
+
+                    {user ? (
+                        <UserAccountNav user={user} />
+                    ) : (
+                        <Link
+                            href='/sign-up'
+                            className={buttonVariants({
+                                variant: 'ghost',
+                            })}>
+                            Create account
+                        </Link>
+                    )}
+
+                    {/* {user ? (
+                        <span
+                            className='h-6 w-px bg-gray-200'
+                            aria-hidden='true'
+                        />
+                    ) : null} */}
+
+                    {/* {user ? null : (
+                        <div className='flex lg:ml-6'>
+                            <span
+                                className='h-6 w-px bg-gray-200'
+                                aria-hidden='true'
+                            />
+                        </div>
+                    )} */}
+
+                    <div className='flex justify-center items-center ml-3'>
+                        {/* <Cart /> */}
+                        <Link href='/cart'>
+                            <ShoppingCart className='w-5 h-4 text-gray-700' />
+                        </Link>
+                    </div>
+                </div>
+            </nav>
+        </header>
+    )
 }
 
 export default Navbar

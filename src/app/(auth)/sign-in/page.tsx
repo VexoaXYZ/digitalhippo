@@ -79,101 +79,70 @@ const Page = () => {
 
   return (
     <>
-      <div className='container relative flex pt-20 flex-col items-center justify-center lg:px-0'>
-        <div className='mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]'>
-          <div className='flex flex-col items-center space-y-2 text-center'>
-            <Icons.logo className='h-20 w-20' />
-            <h1 className='text-2xl font-semibold tracking-tight'>
-              Sign in to your {isSeller ? 'seller' : ''}{' '}
-              account
-            </h1>
-
-            <Link
-              className={buttonVariants({
-                variant: 'link',
-                className: 'gap-1.5',
-              })}
-              href='/sign-up'>
-              Don&apos;t have an account?
-              <ArrowRight className='h-4 w-4' />
-            </Link>
+      <div className="flex min-h-[100dvh] flex-col items-center justify-center bg-background px-4 py-12 sm:px-6 lg:px-8">
+        <div className="mx-auto w-full max-w-md space-y-6">
+          <div className="space-y-2 text-center">
+            <h1 className="text-3xl font-bold text-foreground">Welcome back</h1>
+            <p className="text-muted-foreground">Sign in to your account to continue</p>
           </div>
-
-          <div className='grid gap-6'>
+          <div className="space-y-4">
             <form onSubmit={handleSubmit(onSubmit)}>
-              <div className='grid gap-2'>
-                <div className='grid gap-1 py-2'>
-                  <Label htmlFor='email'>Email</Label>
-                  <Input
-                    {...register('email')}
-                    className={cn({
-                      'focus-visible:ring-red-500':
-                        errors.email,
-                    })}
-                    placeholder='you@example.com'
-                  />
-                  {errors?.email && (
-                    <p className='text-sm text-red-500'>
-                      {errors.email.message}
-                    </p>
-                  )}
+              <div className="relative">
+                <div className="absolute inset-0 flex items-center">
+                  <div className="w-full border-t border-muted" />
                 </div>
-
-                <div className='grid gap-1 py-2'>
-                  <Label htmlFor='password'>Password</Label>
-                  <Input
-                    {...register('password')}
-                    type='password'
-                    className={cn({
-                      'focus-visible:ring-red-500':
-                        errors.password,
-                    })}
-                    placeholder='Password'
-                  />
-                  {errors?.password && (
-                    <p className='text-sm text-red-500'>
-                      {errors.password.message}
-                    </p>
-                  )}
+                <div className="relative flex justify-center text-xs uppercase">
+                  <span className="bg-background px-2 text-muted-foreground">Or continue with</span>
                 </div>
-
-                <Button disabled={isLoading}>
-                  {isLoading && (
-                    <Loader2 className='mr-2 h-4 w-4 animate-spin' />
-                  )}
-                  Sign in
-                </Button>
               </div>
+              <div className="space-y-2 mb-3">
+                <Label htmlFor="email">Email</Label>
+                <Input
+                  {...register('email')}
+                  className={`bg-white` + cn({
+                    'focus-visible:ring-red-500 bg-white':
+                      errors.email,
+                  })}
+                  placeholder='you@example.com'
+                />
+              </div>
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <Label htmlFor="password">Password</Label>
+                  <Link href="#" className="text-sm text-primary hover:underline" prefetch={false}>
+                    Forgot password?
+                  </Link>
+
+                </div>
+
+                <Input
+                  {...register('password')}
+                  type='password'
+                  className={`bg-white` + cn({
+                    'focus-visible:ring-red-500 bg-white':
+                      errors.password,
+                  })}
+                  placeholder='Password'
+                />
+                {errors?.password && (
+                  <p className='text-sm text-red-500'>
+                    {errors.password.message}
+                  </p>
+                )}
+              </div>
+              <Button disabled={isLoading} className='mt-5 w-full'>
+                {isLoading && (
+                  <Loader2 className='mr-2 h-4 w-4 animate-spin' />
+                )}
+                Sign in
+              </Button>
             </form>
-
-            <div className='relative'>
-              <div
-                aria-hidden='true'
-                className='absolute inset-0 flex items-center'>
-                <span className='w-full border-t' />
-              </div>
-              <div className='relative flex justify-center text-xs uppercase'>
-                <span className='bg-background px-2 text-muted-foreground'>
-                  or
-                </span>
-              </div>
-            </div>
-
-            {isSeller ? (
-              <Button
-                onClick={continueAsBuyer}
-                variant='secondary'
-                disabled={isLoading}>
-                Continue as customer
-              </Button>
-            ) : (
-              <Button
-                onClick={continueAsSeller}
-                variant='secondary'
-                disabled={isLoading}>
-                Continue as seller
-              </Button>
-            )}
+          </div>
+          <div className="hidden mt-4 text-center text-sm text-muted-foreground">
+            Don&apos;t have an account?{" "}
+            <Link href="/sign-up" className="font-medium text-primary hover:underline" prefetch={false}>
+              Sign up
+            </Link>
           </div>
         </div>
       </div>

@@ -15,6 +15,7 @@ interface NavItemProps {
   close: () => void
   isOpen: boolean
   isAnyOpen: boolean
+  hrefLink: string
 }
 
 const NavItem = ({
@@ -23,24 +24,19 @@ const NavItem = ({
   handleOpen,
   close,
   isOpen,
+  hrefLink,
 }: NavItemProps) => {
   return (
     <div className='flex'>
       <div className='relative flex items-center'>
-        <Button
-          className='gap-1.5'
-          onClick={handleOpen}
-          variant={isOpen ? 'secondary' : 'ghost'}>
-          {category.label}
-          <ChevronDown
-            className={cn(
-              'h-4 w-4 transition-all text-muted-foreground',
-              {
-                '-rotate-180': isOpen,
-              }
-            )}
-          />
-        </Button>
+        <Link href={category.href}>
+          <Button
+            className='gap-1.5'
+            // onClick={handleOpen}
+            variant={isOpen ? 'secondary' : 'ghost'}>
+            {category.label}
+          </Button>
+        </Link>
       </div>
 
       {isOpen ? (

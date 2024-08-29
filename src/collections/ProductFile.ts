@@ -80,9 +80,12 @@ export const ProductFiles: CollectionConfig = {
     staticURL: '/product_files',
     staticDir: 'product_files',
     mimeTypes: [
-      'image/*',
-      'font/*',
-      'application/postscript',
+      'application/zip',
+      'application/x-7z-compressed',
+      'application/vnd.rar',
+      'application/x-rar-compressed',
+      'application/x-tar',
+      'application/x-gzip',
     ],
   },
   fields: [

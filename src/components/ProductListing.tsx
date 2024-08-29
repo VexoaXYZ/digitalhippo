@@ -6,7 +6,7 @@ import { Skeleton } from './ui/skeleton'
 import Link from 'next/link'
 import { cn, formatPrice } from '@/lib/utils'
 import { PRODUCT_CATEGORIES } from '@/config'
-import ImageSlider from './ImageSlider'
+import { Button } from './ui/button'
 
 interface ProductListingProps {
   product: Product | null
@@ -41,6 +41,7 @@ const ProductListing = ({
 
   if (isVisible && product) {
     return (
+
       <Link
         className={cn(
           'invisible h-full w-full cursor-pointer group/main',
@@ -49,18 +50,25 @@ const ProductListing = ({
           }
         )}
         href={`/product/${product.id}`}>
-        <div className='flex flex-col w-full'>
-          <ImageSlider urls={validUrls} />
-
-          <h3 className='mt-4 font-medium text-sm text-gray-700'>
-            {product.name}
-          </h3>
-          <p className='mt-1 text-sm text-gray-500'>
-            {label}
-          </p>
-          <p className='mt-1 font-medium text-sm text-gray-900'>
-            {formatPrice(product.price)}
-          </p>
+        <div key={product.id} className="bg-card text-card-foreground rounded-lg shadow-lg overflow-hidden m-2 w-full sm:w-auto"> {/* Added m-2 for margin and w-full sm:w-auto for responsiveness */}
+          <div className="block">
+            <img
+              src="https://utfs.io/f/693f0e57-5be4-42bd-adad-7591d485d7a2-bdqfc5.png"
+              alt={product.name}
+              width={400}
+              height={300}
+              className="w-full h-48 object-cover"
+            />
+            <div className="p-4">
+              <h3 className="text-lg font-medium mb-2">{product.name}</h3>
+              <div className="flex justify-between items-center">
+                <p className="font-medium">{formatPrice(product.price)}</p>
+                <Button variant="outline" size="sm">
+                  View Product
+                </Button>
+              </div>
+            </div>
+          </div>
         </div>
       </Link>
     )

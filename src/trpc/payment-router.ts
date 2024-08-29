@@ -15,11 +15,9 @@ export const paymentRouter = router({
     .mutation(async ({ ctx, input }) => {
       const { user } = ctx
       let { productIds } = input
-
       if (productIds.length === 0) {
         throw new TRPCError({ code: 'BAD_REQUEST' })
       }
-
       const payload = await getPayloadClient()
 
       const { docs: products } = await payload.find({
@@ -55,7 +53,7 @@ export const paymentRouter = router({
       })
 
       line_items.push({
-        price: 'price_1OCeBwA19umTXGu8s4p2G3aX',
+        price: 'price_1Pe8kNIs4bNeEvxPKYEPB29T',
         quantity: 1,
         adjustable_quantity: {
           enabled: false,
@@ -75,6 +73,7 @@ export const paymentRouter = router({
             },
             line_items,
           })
+
 
         return { url: stripeSession.url }
       } catch (err) {

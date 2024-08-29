@@ -44,7 +44,6 @@ const NavItems = () => {
         const close = () => setActiveIndex(null)
 
         const isOpen = i === activeIndex
-
         return (
           <NavItem
             category={category}
@@ -53,6 +52,7 @@ const NavItems = () => {
             isOpen={isOpen}
             key={category.value}
             isAnyOpen={isAnyOpen}
+            hrefLink={category.href}
           />
         )
       })}

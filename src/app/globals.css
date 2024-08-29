@@ -4,13 +4,13 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
+    --background: 44, 29%, 90%;
     --foreground: 222.2 84% 4.9%;
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
-    --primary: 221.2 83.2% 53.3%;
+    --primary: 222.2 47.4% 11.2%;
     --primary-foreground: 210 40% 98%;
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
@@ -22,8 +22,34 @@
     --destructive-foreground: 210 40% 98%;
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 221.2 83.2% 53.3%;
+    --ring: 222.2 84% 4.9%;
     --radius: 0.5rem;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+
+    --fallback-p: #491eff;
+    --fallback-pc: #d4dbff;
+    --fallback-s: #ff41c7;
+    --fallback-sc: #fff9fc;
+    --fallback-a: #00cfbd;
+    --fallback-ac: #00100d;
+    --fallback-n: #2b3440;
+    --fallback-nc: #d7dde4;
+    --fallback-b1: #fff;
+    --fallback-b2: #e5e6e6;
+    --fallback-b3: #e5e6e6;
+    --fallback-bc: #1f2937;
+    --fallback-in: #00b3f0;
+    --fallback-inc: #000;
+    --fallback-su: #00ca92;
+    --fallback-suc: #000;
+    --fallback-wa: #ffc22d;
+    --fallback-wac: #000;
+    --fallback-er: #ff6f70;
+    --fallback-erc: #000
   }
 
   .dark {
@@ -33,7 +59,7 @@
     --card-foreground: 210 40% 98%;
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
-    --primary: 217.2 91.2% 59.8%;
+    --primary: 210 40% 98%;
     --primary-foreground: 222.2 47.4% 11.2%;
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
@@ -45,7 +71,33 @@
     --destructive-foreground: 210 40% 98%;
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
-    --ring: 224.3 76.3% 48%;
+    --ring: 212.7 26.8% 83.9%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+
+    --fallback-p: #7582ff;
+    --fallback-pc: #050617;
+    --fallback-s: #ff71cf;
+    --fallback-sc: #190211;
+    --fallback-a: #00c7b5;
+    --fallback-ac: #000e0c;
+    --fallback-n: #2a323c;
+    --fallback-nc: #a6adbb;
+    --fallback-b1: #1d232a;
+    --fallback-b2: #191e24;
+    --fallback-b3: #15191e;
+    --fallback-bc: #a6adbb;
+    --fallback-in: #00b3f0;
+    --fallback-inc: #000;
+    --fallback-su: #00ca92;
+    --fallback-suc: #000;
+    --fallback-wa: #ffc22d;
+    --fallback-wac: #000;
+    --fallback-er: #ff6f70;
+    --fallback-erc: #000
   }
 }
 
@@ -53,20 +105,76 @@
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
   }
 }
 
-.swiper-pagination-bullet {
-  width: 7px !important;
-  height: 7px !important;
-  background: rgba(255, 255, 255, 0.2);
-  scale: 0.9 !important;
+
+.text-accent {
+  --tw-text-opacity: 1;
+  color: #2e2322;
 }
 
-.swiper-pagination-bullet-active {
-  color: #fff;
-  background: white !important;
-  scale: 1 !important ;
+
+.text-base-content {
+  --tw-text-opacity: 1;
+  color: var(--fallback-bc, oklch(var(--bc)/var(--tw-text-opacity)))
+}
+
+.bg-base-100 {
+  --tw-bg-opacity: 1;
+  background-color: var(--fallback-b1, oklch(var(--b1)/var(--tw-bg-opacity)))
+}
+
+.bg-base-200 {
+  --tw-bg-opacity: 1;
+  background-color: var(--fallback-b2, oklch(var(--b2)/var(--tw-bg-opacity)))
+}
+
+.bg-base-200\/50 {
+  background-color: var(--fallback-b2, oklch(var(--b2)/.5))
+}
+
+.bg-base-300 {
+  --tw-bg-opacity: 1;
+  background-color: var(--fallback-b3, oklch(var(--b3)/var(--tw-bg-opacity)))
+}
+
+.bg-base-content {
+  --tw-bg-opacity: 1;
+  background-color: var(--fallback-bc, oklch(var(--bc)/var(--tw-bg-opacity)))
+}
+
+.bg-base-content\/5 {
+  background-color: var(--fallback-bc, oklch(var(--bc)/.05))
+}
+
+.bg-black {
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 0 0/var(--tw-bg-opacity))
+}
+
+.bg-error {
+  --tw-bg-opacity: 1;
+  background-color: var(--fallback-er, oklch(var(--er)/var(--tw-bg-opacity)))
+}
+
+.bg-error\/20 {
+  background-color: var(--fallback-er, oklch(var(--er)/.2))
+}
+
+.bg-gray-900\/50 {
+  background-color: rgba(17, 24, 39, .5)
+}
+
+.bg-green-500\/20 {
+  background-color: rgba(34, 197, 94, .2)
+}
+
+
+.bg-neutral {
+  --tw-bg-opacity: 1;
+  background-color: #faf9f5;
 }

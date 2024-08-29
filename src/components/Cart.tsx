@@ -1,6 +1,5 @@
 'use client'
 
-import { ShoppingCart } from 'lucide-react'
 import {
   Sheet,
   SheetContent,
@@ -18,6 +17,7 @@ import { useCart } from '@/hooks/use-cart'
 import { ScrollArea } from './ui/scroll-area'
 import CartItem from './CartItem'
 import { useEffect, useState } from 'react'
+import { ShoppingBag } from 'lucide-react';
 
 const Cart = () => {
   const { items } = useCart()
@@ -39,9 +39,9 @@ const Cart = () => {
   return (
     <Sheet>
       <SheetTrigger className='group -m-2 flex items-center p-2'>
-        <ShoppingCart
+        <ShoppingBag
           aria-hidden='true'
-          className='h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500'
+          className='h-4 w-4 flex-shrink-0 text-gray-400 group-hover:text-gray-500'
         />
         <span className='ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800'>
           {isMounted ? itemCount : 0}
